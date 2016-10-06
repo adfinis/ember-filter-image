@@ -1,6 +1,6 @@
-# Ember-filter-image
+# ember-filter-image
 
-This README outlines the details of collaborating on this Ember addon.
+An [ember-cli](http://www.ember-cli.com) addon for cross-browser image filtering using SVG filters.
 
 ## Installation
 
