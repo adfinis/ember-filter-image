@@ -2,8 +2,10 @@
   "predef": [
     "document",
     "window",
-    "-Promise"
+    "-Promise",
+    "SVG"
   ],
+  "asi": true,
   "browser": true,
   "boss": true,
   "curly": true,

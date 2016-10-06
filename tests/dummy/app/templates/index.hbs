@@ -1,0 +1,12 @@
+<p>Grayscale:
+{{input type="range" min="0" max="2" step="0.01" value=filters.grayscale}}
+{{filters.grayscale}}</p>
+<p>Contrast:
+{{input type="range" min="0" max="2" step="0.01" value=filters.contrast}}
+{{filters.contrast}}</p>
+<p>Brightness:
+{{input type="range" min="-1" max="1" step="0.01" value=filters.brightness}}
+{{filters.brightness}}</p>
+<div style="width:500px; height: 500px">
+  {{filter-image src="construction.png" filters=filters}}
+</div>
