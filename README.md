@@ -31,6 +31,17 @@ By default, the rendered image will be scaled such that it is contained in the p
 {{filter-image src="image.jpg" filters=filters size="cover"}}
 ```
 
+## Why not use CSS filters?
+
+Because [IE11 doesn't support them...](http://caniuse.com/#feat=css-filters)
+
+## Supported filters
+* [contrast](https://developer.mozilla.org/de/docs/Web/CSS/filter#contrast(amount))
+* [grayscale](https://developer.mozilla.org/de/docs/Web/CSS/filter#grayscale(amount))
+* [brightness](https://developer.mozilla.org/de/docs/Web/CSS/filter#brightness(amount))
+
+Adding more filters just a matter of implementing the respective filter function, though.
+
 ## Installation
 
 * `git clone <repository-url>` this repository
