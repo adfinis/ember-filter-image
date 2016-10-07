@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/adfinis-sygroup/ember-filter-image.svg?branch=master)](https://travis-ci.org/adfinis-sygroup/ember-filter-image)
+
 # ember-filter-image
 
 An [ember-cli](http://www.ember-cli.com) addon for cross-browser image filtering using SVG filters.
