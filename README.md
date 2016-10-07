@@ -1,8 +1,35 @@
+[![npm version](https://badge.fury.io/js/ember-filter-image.svg)](https://badge.fury.io/js/ember-filter-image)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-filter-image.svg)](http://emberobserver.com/addons/ember-filter-image)
 [![Build Status](https://travis-ci.org/adfinis-sygroup/ember-filter-image.svg?branch=master)](https://travis-ci.org/adfinis-sygroup/ember-filter-image)
 
 # ember-filter-image
 
 An [ember-cli](http://www.ember-cli.com) addon for cross-browser image filtering using SVG filters.
+
+Just [take me to the demo!](https://adfinis-sygroup.github.io/ember-filter-image/)
+
+## Usage
+
+Just add the `filter-image` component to your template:
+```
+{{filter-image src="image.jpg" filters=filters}}
+```
+`src` should be pretty self-explanatory, and `filters` is an object containing the filter settings, e.g. (in your route):
+```javascript
+setupController(controller) {
+  controller.set('filters', {
+    contrast: 1,
+    grayscale: 1,
+    brightness: 0
+  })
+}
+```
+
+### Background-size
+By default, the rendered image will be scaled such that it is contained in the parent DOM element. If you'd prefer it to behave as if you'd apply `background-size:cover` to it, add `size="cover"`:
+```
+{{filter-image src="image.jpg" filters=filters size="cover"}}
+```
 
 ## Installation
 
