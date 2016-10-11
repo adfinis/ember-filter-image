@@ -14,8 +14,8 @@ export default Ember.Component.extend({
       let img = new Image()
 
       img.onload = () => {
-        this.get('drawing').size(img.height, img.width)
-        this.get('image').size(img.height, img.width)
+        this.get('drawing').size(img.width, img.height)
+        this.get('image').size(img.width, img.height)
 
         resolve()
       }
