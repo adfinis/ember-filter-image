@@ -1,35 +1,46 @@
 import Ember from 'ember'
 
 export default Ember.Component.extend({
-  style: 'width:100%; height: 100%;',
-  attributeBindings: ['style'],
+  filters: {
+    grayscale:  1,
+    contrast:   1,
+    brightness: 0
+  },
 
-  filters: null,
+  loadImage() {
+    this.get('image').load(this.get('src'))
+
+    return new Ember.RSVP.Promise(resolve => {
+      let img = new Image()
+
+      img.onload = () => {
+        this.get('drawing').size(img.height, img.width)
+        this.get('image').size(img.height, img.width)
+
+        resolve()
+      }
+
+      img.src = this.get('src')
+    })
+  },
 
   didInsertElement() {
-    const drawing = SVG(this.$('')[0])
-    const image = drawing.image(this.get('src'))
-    image.native().setAttribute('height', '100%')
-    image.native().setAttribute('width', '100%')
-    const meetOrSlice = this.get('size') === 'cover' ? 'slice' : 'meet'
-    image.native().setAttribute('preserveAspectRatio', 'xMidYMid ' + meetOrSlice)
-    this.set('image', image)
-    this.set('drawing', drawing)
+    this.set('drawing', SVG(this.get('element')))
+    this.set('image', this.get('drawing').image(this.get('src')))
   },
 
   didReceiveAttrs() {
-    if (this.get('image')) {
-      this.set('image', this.get('image').load(this.get('src')))
-    }
-  },
-
-  didRender() {
-    this.draw()
+    Ember.run.once(this, () => {
+      this.loadImage().then(() => {
+        this.draw()
+      })
+    })
   },
 
   draw: Ember.observer('filters.{contrast,grayscale,brightness},image', function() {
     const { contrast, grayscale, brightness } = this.get('filters')
     this.get('image').unfilter(true)
+
     /* eslint-disable array-callback-return, no-magic-numbers */
     this.get('image').filter(add => {
       const contrastFilter = add.componentTransfer({

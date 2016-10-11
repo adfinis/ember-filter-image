@@ -1,4 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
+import wait from 'ember-test-helpers/wait';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('filter-image', 'Integration | Component | filter image', {
@@ -13,6 +14,8 @@ test('it renders', function(assert) {
   });
   this.render(hbs`{{filter-image src="construction.png" filters=filters}}`);
 
-  assert.equal(this.$('svg > image').attr('href'), 'construction.png');
+  return wait().then(() => {
+    assert.equal(this.$('svg > image').attr('href'), 'construction.png');
+  })
 });
 
