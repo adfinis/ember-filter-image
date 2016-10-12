@@ -1,6 +1,8 @@
 import Ember from 'ember'
 
 export default Ember.Component.extend({
+  tagName: 'svg',
+
   filters: {
     grayscale:  1,
     contrast:   1,
@@ -14,7 +16,7 @@ export default Ember.Component.extend({
       let img = new Image()
 
       img.onload = () => {
-        this.get('drawing').size(img.width, img.height)
+        this.get('drawing').native().setAttribute('viewBox', `0 0 ${img.width} ${img.height}`)
         this.get('image').size(img.width, img.height)
 
         resolve()
@@ -29,15 +31,15 @@ export default Ember.Component.extend({
     this.set('image', this.get('drawing').image(this.get('src')))
   },
 
-  didReceiveAttrs() {
+  load: Ember.observer('image', function() {
     Ember.run.once(this, () => {
       this.loadImage().then(() => {
         this.draw()
       })
     })
-  },
+  }),
 
-  draw: Ember.observer('filters.{contrast,grayscale,brightness},image', function() {
+  draw: Ember.observer('filters.{contrast,grayscale,brightness}', function() {
     const { contrast, grayscale, brightness } = this.get('filters')
     this.get('image').unfilter(true)
 
