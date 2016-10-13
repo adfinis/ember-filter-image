@@ -37,7 +37,7 @@ Because [IE11 doesn't support them...](http://caniuse.com/#feat=css-filters)
 
 ## Supported filters
 * [contrast](https://developer.mozilla.org/en/docs/Web/CSS/filter#contrast(amount))
-* [saturation](https://developer.mozilla.org/en/docs/Web/CSS/filter#grayscale(amount))
+* [saturation](https://developer.mozilla.org/en/docs/Web/CSS/filter#saturate(amount))
 * [brightness](https://developer.mozilla.org/en/docs/Web/CSS/filter#brightness(amount))
 
 Adding more filters just a matter of implementing the respective filter function, though.
