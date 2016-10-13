@@ -1,6 +1,6 @@
 {
   "name": "ember-filter-image",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "ember-cli addon for cross-browser image filtering",
   "directories": {
     "doc": "doc",
