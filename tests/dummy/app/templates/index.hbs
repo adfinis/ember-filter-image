@@ -1,12 +1,28 @@
-<p>Saturation:
-{{input type="range" min="0" max="2" step="0.01" value=filters.saturation}}
-{{filters.saturation}}</p>
-<p>Contrast:
-{{input type="range" min="0" max="2" step="0.01" value=filters.contrast}}
-{{filters.contrast}}</p>
-<p>Brightness:
-{{input type="range" min="-1" max="1" step="0.01" value=filters.brightness}}
-{{filters.brightness}}</p>
-<div style="width:500px; height: 500px">
-  {{filter-image src="construction.png" filters=filters}}
-</div>
+<table border=0>
+  <tr>
+    <td>
+      <table class="settings" border=0>
+        <tr>
+          <td>Saturation:</td>
+          <td>{{input type="range" min="0" max="2" step="0.01" value=filters.saturation}}</td>
+          <td>{{filters.saturation}}</td>
+        </tr>
+        <tr>
+          <td>Contrast:</td>
+          <td>{{input type="range" min="0" max="2" step="0.01" value=filters.contrast}}</td>
+          <td>{{filters.contrast}}</td>
+        </tr>
+        <tr>
+          <td>Brightness:</td>
+          <td>{{input type="range" min="-1" max="1" step="0.01" value=filters.brightness}}</td>
+          <td>{{filters.brightness}}</td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <div style="width:500px;">
+        {{filter-image src="construction.png" filters=filters}}
+      </div>
+    </td>
+  </tr>
+</table>

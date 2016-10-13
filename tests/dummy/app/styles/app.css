@@ -1,3 +1,25 @@
+html {
+  height: 100vh;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  display: flex;
+}
+
+body.ember-application > .ember-view {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings tr td:last-child {
+  width: 50px;
+  overflow: hidden;
+}
+
 input[type=range]::-moz-range-thumb {
   background-color: grey;
 }
