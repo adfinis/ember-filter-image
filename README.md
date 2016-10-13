@@ -34,6 +34,12 @@ If you don't want the aspect ratio to be locked, apply this:
 ```
 {{filter-image src="image.jpg" filters=filters lockAspectRatio=false}}
 ```
+### Options
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| filters | `Object` | `{ saturation: 1, contrast: 1, brightness: 0 }` | The values for the filters to apply |
+| crop    | `Boolean` | `false` | Whether to crop the image on scaling (this is obviously ignored if the aspect ratio is not locked) |
+| lockAspectRatio | `Boolean` | `true` | Whether to lock the aspect ratio on scaling |
 
 ## Why not use CSS filters?
 
