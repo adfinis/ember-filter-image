@@ -30,6 +30,10 @@ By default, the rendered image will be scaled such that it is contained in the p
 ```
 {{filter-image src="image.jpg" filters=filters crop=true}}
 ```
+If you don't want the aspect ratio to be locked, apply this:
+```
+{{filter-image src="image.jpg" filters=filters lockAspectRatio=false}}
+```
 
 ## Why not use CSS filters?
 

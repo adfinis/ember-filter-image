@@ -20,7 +20,11 @@ export default Ember.Component.extend({
 
   crop: false,
 
-  preserveAspectRatio: Ember.computed('crop', function() {
+  lockAspectRatio: true,
+
+  preserveAspectRatio: Ember.computed('crop', 'lockAspectRatio', function() {
+    if (!this.get('lockAspectRatio')) return 'none'
+
     return this.get('crop') ? 'xMidYMid slice' : 'xMidYMid meet'
   }),
 
