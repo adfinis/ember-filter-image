@@ -19,7 +19,7 @@ Just add the `filter-image` component to your template:
 setupController(controller) {
   controller.set('filters', {
     contrast: 1,
-    grayscale: 1,
+    saturation: 1,
     brightness: 0
   })
 }
@@ -36,9 +36,9 @@ By default, the rendered image will be scaled such that it is contained in the p
 Because [IE11 doesn't support them...](http://caniuse.com/#feat=css-filters)
 
 ## Supported filters
-* [contrast](https://developer.mozilla.org/de/docs/Web/CSS/filter#contrast(amount))
-* [grayscale](https://developer.mozilla.org/de/docs/Web/CSS/filter#grayscale(amount))
-* [brightness](https://developer.mozilla.org/de/docs/Web/CSS/filter#brightness(amount))
+* [contrast](https://developer.mozilla.org/en/docs/Web/CSS/filter#contrast(amount))
+* [saturation](https://developer.mozilla.org/en/docs/Web/CSS/filter#grayscale(amount))
+* [brightness](https://developer.mozilla.org/en/docs/Web/CSS/filter#brightness(amount))
 
 Adding more filters just a matter of implementing the respective filter function, though.
 
