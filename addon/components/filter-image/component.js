@@ -6,7 +6,7 @@ export default Ember.Component.extend({
 
   layout,
 
-  attributeBindings: [ 'xmlns', 'version', 'viewBox', 'xmlnsXlink:xmlns:xlink' ],
+  attributeBindings: [ 'xmlns', 'version', 'viewBox', 'preserveAspectRatio', 'xmlnsXlink:xmlns:xlink' ],
 
   xmlns: 'http://www.w3.org/2000/svg',
 
@@ -16,6 +16,12 @@ export default Ember.Component.extend({
 
   viewBox: Ember.computed('width', 'height', function() {
     return `0 0 ${this.get('width')} ${this.get('height')}`
+  }),
+
+  crop: false,
+
+  preserveAspectRatio: Ember.computed('crop', function() {
+    return this.get('crop') ? 'xMidYMid slice' : 'xMidYMid meet'
   }),
 
   filters: {

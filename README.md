@@ -25,10 +25,10 @@ setupController(controller) {
 }
 ```
 
-### Background-size
-By default, the rendered image will be scaled such that it is contained in the parent DOM element. If you'd prefer it to behave as if you'd apply `background-size:cover` to it, add `size="cover"`:
+### Scaling
+By default, the rendered image will be scaled such that it is contained in the parent DOM element. If you'd prefer it to be cropped apply this:
 ```
-{{filter-image src="image.jpg" filters=filters size="cover"}}
+{{filter-image src="image.jpg" filters=filters crop=true}}
 ```
 
 ## Why not use CSS filters?
