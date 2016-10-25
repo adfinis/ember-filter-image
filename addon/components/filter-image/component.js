@@ -40,10 +40,12 @@ export default Ember.Component.extend({
 
   height: 0,
 
-  saturation: Ember.computed.oneWay('filters.saturation'),
+  saturation: Ember.computed('filters.saturation', function() {
+    return this.get('filters.saturation') || 1
+  }),
 
   contrast: Ember.computed('filters.contrast', function() {
-    const contrast = this.get('filters.contrast')
+    const contrast = this.get('filters.contrast') || 1
 
     return {
       type:      'linear',
@@ -53,7 +55,7 @@ export default Ember.Component.extend({
   }),
 
   brightness: Ember.computed('filters.brightness', function() {
-    const brightness = this.get('filters.brightness')
+    const brightness = this.get('filters.brightness') || 0
 
     return {
       type:      'linear',
