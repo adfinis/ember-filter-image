@@ -17,3 +17,15 @@ test('it renders', function(assert) {
   assert.notOk(this.$('svg > image').attr('href'));
 });
 
+test('it can handle missing filters', function(assert) {
+  this.set('filters', {
+  });
+  this.render(hbs`{{filter-image src="construction.png" filters=filters}}`);
+
+  const $ = this.$;
+  assert.equal($('svg > image').attr('xlink:href'), 'construction.png');
+  $('svg feFuncR').each(function(i, element) {
+    assert.equal($(element).attr('slope'), 1);
+    assert.equal($(element).attr('intercept'), 0);
+  });
+});
