@@ -1,6 +1,12 @@
 import Ember from 'ember'
 import layout from './template'
 
+const FILTER_DEFAULTS = {
+    saturation: 1,
+    contrast:   1,
+    brightness: 0
+}
+
 export default Ember.Component.extend({
   tagName: 'svg',
 
@@ -30,22 +36,18 @@ export default Ember.Component.extend({
     return this.get('crop') ? 'xMidYMid slice' : 'xMidYMid meet'
   }),
 
-  filters: {
-    saturation: 1,
-    contrast:   1,
-    brightness: 0
-  },
+  filters: FILTER_DEFAULTS,
 
   width: 0,
 
   height: 0,
 
   saturation: Ember.computed('filters.saturation', function() {
-    return this.get('filters.saturation') || 1
+    return this.get('filters.saturation') || FILTER_DEFAULTS.saturation
   }),
 
   contrast: Ember.computed('filters.contrast', function() {
-    const contrast = this.get('filters.contrast') || 1
+    const contrast = this.get('filters.contrast') || FILTER_DEFAULTS.contrast
 
     return {
       type:      'linear',
@@ -55,7 +57,7 @@ export default Ember.Component.extend({
   }),
 
   brightness: Ember.computed('filters.brightness', function() {
-    const brightness = this.get('filters.brightness') || 0
+    const brightness = this.get('filters.brightness') || FILTER_DEFAULTS.brightness
 
     return {
       type:      'linear',
