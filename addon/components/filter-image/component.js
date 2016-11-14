@@ -12,8 +12,6 @@ export default Ember.Component.extend({
 
   layout,
 
-  location: window.location,
-
   attributeBindings: [ 'xmlns', 'version', 'viewBox', 'preserveAspectRatio', 'xmlnsXlink:xmlns:xlink' ],
 
   xmlns: 'http://www.w3.org/2000/svg',
