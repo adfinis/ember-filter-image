@@ -9,12 +9,11 @@ test('it renders', function(assert) {
   this.set('filters', {
     contrast: 1,
     saturation: 1,
-    brightness: 0
+    brightness: 1
   });
   this.render(hbs`{{filter-image src="construction.png" filters=filters}}`);
 
-  assert.equal(this.$('svg > image').attr('xlink:href'), 'construction.png');
-  assert.notOk(this.$('svg > image').attr('href'));
+  assert.equal(this.$('img').attr('src'), 'construction.png');
 });
 
 test('it can handle missing filters', function(assert) {
@@ -22,10 +21,9 @@ test('it can handle missing filters', function(assert) {
   });
   this.render(hbs`{{filter-image src="construction.png" filters=filters}}`);
 
-  const $ = this.$;
-  assert.equal($('svg > image').attr('xlink:href'), 'construction.png');
-  $('svg feFuncR').each(function(i, element) {
-    assert.equal($(element).attr('slope'), 1);
-    assert.equal($(element).attr('intercept'), 0);
-  });
+  assert.equal(this.$('img').attr('src'), 'construction.png');
+
+  assert.ok(/contrast/.test(this.$('img').attr('style')));
+  assert.ok(/brightness/.test(this.$('img').attr('style')));
+  assert.ok(/saturate/.test(this.$('img').attr('style')));
 });

@@ -1,18 +1,5 @@
-<defs>
-  <filter id="{{elementId}}-filter">
-    <feComponentTransfer>
-      <feFuncR type="{{contrast.type}}" slope="{{contrast.slope}}" intercept="{{contrast.intercept}}"></feFuncR>
-      <feFuncG type="{{contrast.type}}" slope="{{contrast.slope}}" intercept="{{contrast.intercept}}"></feFuncG>
-      <feFuncB type="{{contrast.type}}" slope="{{contrast.slope}}" intercept="{{contrast.intercept}}"></feFuncB>
-      <feFuncA type="identity"></feFuncA>
-    </feComponentTransfer>
-    <feComponentTransfer>
-      <feFuncR type="{{brightness.type}}" slope="{{brightness.slope}}" intercept="{{brightness.intercept}}"></feFuncR>
-      <feFuncG type="{{brightness.type}}" slope="{{brightness.slope}}" intercept="{{brightness.intercept}}"></feFuncG>
-      <feFuncB type="{{brightness.type}}" slope="{{brightness.slope}}" intercept="{{brightness.intercept}}"></feFuncB>
-      <feFuncA type="identity"></feFuncA>
-    </feComponentTransfer>
-    <feColorMatrix type="saturate" values="{{saturation}}"></feColorMatrix>
-  </filter>
-</defs>
-<image xlink:href="{{src}}" width="{{width}}" height="{{height}}" filter="url(#{{elementId}}-filter)"></image>
+{{#if isIE}}
+  {{filter-image-svg src=src filters=filters crop=crop lockAspectRatio=lockAspectRatio}}
+{{else}}
+  {{filter-image-img src=src filters=filters crop=crop lockAspectRatio=lockAspectRatio}}
+{{/if}}

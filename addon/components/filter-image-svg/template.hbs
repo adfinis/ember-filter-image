@@ -1,0 +1,17 @@
+<defs>
+  <filter id="{{elementId}}-filter">
+    <feComponentTransfer>
+      <feFuncR type="{{contrast.type}}" slope="{{contrast.slope}}" intercept="{{contrast.intercept}}"></feFuncR>
+      <feFuncG type="{{contrast.type}}" slope="{{contrast.slope}}" intercept="{{contrast.intercept}}"></feFuncG>
+      <feFuncB type="{{contrast.type}}" slope="{{contrast.slope}}" intercept="{{contrast.intercept}}"></feFuncB>
+      <feFuncA type="identity"></feFuncA>
+    </feComponentTransfer>
+    <feComponentTransfer>
+      <feFuncR type="{{brightness.type}}" slope="{{brightness.slope}}"></feFuncR>
+      <feFuncG type="{{brightness.type}}" slope="{{brightness.slope}}"></feFuncG>
+      <feFuncB type="{{brightness.type}}" slope="{{brightness.slope}}"></feFuncB>
+    </feComponentTransfer>
+    <feColorMatrix type="saturate" values="{{saturation}}"></feColorMatrix>
+  </filter>
+</defs>
+<image xlink:href="{{src}}" width="{{width}}" height="{{height}}" filter="url(#{{elementId}}-filter)"></image>

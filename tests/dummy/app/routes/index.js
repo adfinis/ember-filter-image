@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     controller.set('filters', {
       contrast: 1,
       saturation: 1,
-      brightness: 0
+      brightness: 1
     })
   }
 });
