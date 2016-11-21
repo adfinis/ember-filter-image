@@ -2,39 +2,39 @@ import Ember from 'ember'
 import layout from './template'
 
 const FILTER_DEFAULTS = {
-    saturation: 1,
-    contrast:   1,
+    saturation: 0,
+    contrast:   0,
     brightness: 0
 }
 
 export default Ember.Component.extend({
-  tagName: 'svg',
+  tagName: 'canvas',
 
   layout,
 
-  attributeBindings: [ 'xmlns', 'version', 'viewBox', 'preserveAspectRatio', 'xmlnsXlink:xmlns:xlink' ],
+  attributeBindings: [ 'data-caman-hidpi:src' ],
 
-  xmlns: 'http://www.w3.org/2000/svg',
+  // xmlns: 'http://www.w3.org/2000/svg',
 
-  version: '1.1',
+  // version: '1.1',
 
-  xmlnsXlink: 'http://www.w3.org/1999/xlink',
+  // xmlnsXlink: 'http://www.w3.org/1999/xlink',
 
-  viewBox: Ember.computed('width', 'height', function() {
-    return `0 0 ${this.get('width')} ${this.get('height')}`
-  }),
+  // viewBox: Ember.computed('width', 'height', function() {
+  //   return `0 0 ${this.get('width')} ${this.get('height')}`
+  // }),
 
-  crop: false,
+  // crop: false,
 
-  lockAspectRatio: true,
+  // lockAspectRatio: true,
 
-  preserveAspectRatio: Ember.computed('crop', 'lockAspectRatio', function() {
-    if (!this.get('lockAspectRatio')) {
-      return 'none'
-    }
+  // preserveAspectRatio: Ember.computed('crop', 'lockAspectRatio', function() {
+  //   if (!this.get('lockAspectRatio')) {
+  //     return 'none'
+  //   }
 
-    return this.get('crop') ? 'xMidYMid slice' : 'xMidYMid meet'
-  }),
+  //   return this.get('crop') ? 'xMidYMid slice' : 'xMidYMid meet'
+  // }),
 
   filters: FILTER_DEFAULTS,
 
@@ -42,29 +42,31 @@ export default Ember.Component.extend({
 
   height: 0,
 
-  saturation: Ember.computed('filters.saturation', function() {
-    return this.get('filters.saturation') || FILTER_DEFAULTS.saturation
-  }),
+  src: null,
 
-  contrast: Ember.computed('filters.contrast', function() {
-    const contrast = this.get('filters.contrast') || FILTER_DEFAULTS.contrast
+  // saturation: Ember.computed('filters.saturation', function() {
+  //   return this.get('filters.saturation') || FILTER_DEFAULTS.saturation
+  // }),
 
-    return {
-      type:      'linear',
-      slope:     contrast,
-      intercept: -(0.5 * contrast) + 0.5
-    }
-  }),
+  // contrast: Ember.computed('filters.contrast', function() {
+  //   const contrast = this.get('filters.contrast') || FILTER_DEFAULTS.contrast
 
-  brightness: Ember.computed('filters.brightness', function() {
-    const brightness = this.get('filters.brightness') || FILTER_DEFAULTS.brightness
+  //   return {
+  //     type:      'linear',
+  //     slope:     contrast,
+  //     intercept: -(0.5 * contrast) + 0.5
+  //   }
+  // }),
 
-    return {
-      type:      'linear',
-      slope:     1,
-      intercept: brightness
-    }
-  }),
+  // brightness: Ember.computed('filters.brightness', function() {
+  //   const brightness = this.get('filters.brightness') || FILTER_DEFAULTS.brightness
+
+  //   return {
+  //     type:      'linear',
+  //     slope:     1,
+  //     intercept: brightness
+  //   }
+  // }),
 
   didReceiveAttrs() {
     this._super(...arguments)
@@ -78,5 +80,21 @@ export default Ember.Component.extend({
     }
 
     img.src = this.get('src')
-  }
+  },
+
+  didInsertElement() {
+    this.filter()
+  },
+
+  filter: Ember.observer('filters.{brightness,saturation,contrast}', function() {
+    let { brightness, contrast, saturation } = this.get('filters')
+
+    Caman(`#${this.get('elementId')}`, this.get('src'), function() {
+      this.revert(false)
+      this.brightness(parseFloat(brightness))
+      this.contrast(parseFloat(contrast) / 10)
+      this.saturation(parseFloat(saturation))
+      this.render()
+    })
+  })
 })

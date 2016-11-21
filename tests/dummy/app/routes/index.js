@@ -3,8 +3,8 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   setupController(controller) {
     controller.set('filters', {
-      contrast: 1,
-      saturation: 1,
+      contrast: 0,
+      saturation: 0,
       brightness: 0
     })
   }
