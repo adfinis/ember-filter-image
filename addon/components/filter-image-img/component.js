@@ -32,7 +32,7 @@ export default Ember.Component.extend({
     return this.get('filters.brightness') || FILTER_DEFAULTS.brightness
   }),
 
-  objectFit: Ember.computed('crop,lockAspectRatio', function() {
+  objectFit: Ember.computed('crop', 'lockAspectRatio', function() {
     let { crop, lockAspectRatio } = this.getProperties('crop', 'lockAspectRatio')
 
     if (!crop && !lockAspectRatio) {
@@ -42,7 +42,7 @@ export default Ember.Component.extend({
     return crop ? 'cover' : 'contain'
   }),
 
-  style: Ember.computed('filters.{saturation,contrast,brightness},objectFit', function() {
+  style: Ember.computed('filters.{saturation,contrast,brightness}', 'objectFit', function() {
     let b = this.get('filters.brightness')
     let c = this.get('filters.contrast')
     let s = this.get('filters.saturation')
