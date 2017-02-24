@@ -12,15 +12,11 @@ export default Ember.Component.extend({
 
   tagName: '',
 
-  ieCheck: Ember.inject.service('ieCheck'),
+  isIE: !!document.documentMode,
 
   crop: false,
 
   lockAspectRatio: true,
 
-  filters: FILTER_DEFAULTS,
-
-  isIE: Ember.computed('ieCheck', function() {
-    return this.get('ieCheck').isIE()
-  })
+  filters: FILTER_DEFAULTS
 })
